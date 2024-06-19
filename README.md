@@ -4,9 +4,9 @@ This repository contains a collection of Python scripts implementing the One-Cla
 ## Project Description
 
 - `run.py`: Imports baseline models from [kenchi](https://github.com/Y-oHr-N/kenchi), [pyod](https://github.com/yzhao062/pyod), [sklearn](https://scikit-learn.org/stable/), [deepod](https://pypi.org/project/deepod/), and our OCMISVM model. Configures parameters, creates the one-class multi-instance dataset, splits the dataset, conducts anomaly detection, and reports results in terms of accuracy, precision, recall, F1 score, and balanced accuracy.
-- `utils.py`: Contains utility functions for experiments, processes raw chest X-ray data, creates the multi-instance dataset for anomaly detection, and includes visualization code for plotting important instances identified by the OC learning model.
-- `MISVM.py`: Implements the OCMISVM model, featuring the class OCMISVM with three key methods: __init__, fit, and predict. The __init__ method defines the hyperparameters of OCMISVM. The fit method takes the multi-instance training data X and its associated grouping information y (with ungrouped bags marked as 'unlabeled'). The predict method also takes multi-instance data X and their grouping information, outputting decisions where 1 and -1 indicates the positive and negative data for the bags in X.
-- `other_models.py`: Includes baseline outlier detection models for comparison. Contains wrappers for sklearn, kenchi, pyod, and deepod models, with each wrapper defining the fit and predict methods to consistently output 1 for positive and -1 for negative data.
+- `utils.py`: Contains utility functions for experiments, processes raw chest X-ray data, creates the multi-instance dataset for anomaly detection, and includes visualization code for plotting important instances identified by the OC classification model.
+- `MISVM.py`: Implements the OCMISVM model, featuring the class OCMISVM with three key methods: __init__, fit, and predict. The __init__ method defines the hyperparameters of OCMISVM. The fit method takes the multi-instance training data X and its associated grouping information y (with ungrouped bags marked as 'unlabeled'). The predict method also takes multi-instance data X and their grouping information, outputting decisions where 1 and -1 indicates the inlier (normal) and outlier (abnormal) data for the bags in X.
+- `other_models.py`: Includes baseline outlier detection models for comparison. Contains wrappers for sklearn, kenchi, pyod, and deepod models, with each wrapper defining the fit and predict methods to consistently output 1 for inlier and -1 for outlier data.
 
 ## Getting Started
 ### Dependencies
@@ -41,7 +41,7 @@ A folder will be created under the 'output_path' in `run.py`, containing all the
 
 ## Data
 
-he necessary data for executing the framework's scripts is readily accessible in the [Chest X-ray dataset repository](https://github.com/ieee8023/covid-chestxray-dataset). Clone this repository to your local machine and specify the path to the cloned dataset in `run.py`.
+The necessary data for executing the framework's scripts is readily accessible in the [Chest X-ray dataset repository](https://github.com/ieee8023/covid-chestxray-dataset). Clone this repository to your local machine and specify the path to the cloned dataset in `run.py`.
 
 ## Contributing
 
