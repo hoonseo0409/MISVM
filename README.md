@@ -1,20 +1,48 @@
-Experiments codes with synthetic multi instance data.
+# One-Class Multi-Instance Support Vector Machine (OCMISVM)
+This repository contains a collection of Python scripts implementing the One-Class Multi-Instance Support Vector Machine (OCMISVM) model and its experiments on synthetic and Chest X-Ray multi-instance datasets. It covers data creation, building baseline models, calculating classification performance metrics, and visualizing the results.
 
-- Project Structure:
-run.py: Entry file to run the project.
+## Project Description
 
-utils.py: Utility functions for experiments.
+- `run.py`: Imports baseline models from [kenchi](https://github.com/Y-oHr-N/kenchi), [pyod](https://github.com/yzhao062/pyod), [sklearn](https://scikit-learn.org/stable/), [deepod](https://pypi.org/project/deepod/), and our OCMISVM model. Configures parameters, creates the one-class multi-instance dataset, splits the dataset, conducts anomaly detection, and reports results in terms of accuracy, precision, recall, F1 score, and balanced accuracy.
+- `utils.py`: Contains utility functions for experiments, processes raw chest X-ray data, creates the multi-instance dataset for anomaly detection, and includes visualization code for plotting important instances identified by the OC learning model.
+- `MISVM.py`: Implements the OCMISVM model, featuring the class OCMISVM with three key methods: __init__, fit, and predict. The __init__ method defines the hyperparameters of OCMISVM. The fit method takes the multi-instance training data X and its associated grouping information y (with ungrouped bags marked as 'unlabeled'). The predict method also takes multi-instance data X and their grouping information, outputting decisions where 1 and -1 indicates the positive and negative data for the bags in X.
+- `other_models.py`: Includes baseline outlier detection models for comparison. Contains wrappers for sklearn, kenchi, pyod, and deepod models, with each wrapper defining the fit and predict methods to consistently output 1 for positive and -1 for negative data.
 
-MISVM.py: Implementation of MISVM model.
+## Getting Started
+### Dependencies
 
-other_models.py: Baseline Positive and Unlabeled (PU) learning or outlier detection models for comparison.
+- Python 3.9.16
+- Python packages listed in requirements.txt
 
+### Installation
+To set up the project, start by cloning the repository to your local machine. It is highly recommended to create an isolated Python environment via conda. For example:
+```
+conda create -n "OCMISVM" python=3.9
+```
 
-- Instructions to conduct classification on synthetic dataset.
+Then, activate the created environment:
+```
+conda activate "OCMISVM"
+```
 
-1. Install the packages with command "pip install requirements.py"
+Next, install the required packages:
+```
+pip install requirements.py
+```
 
-2. Run run.py with "python3 run.py"
+## Running the tests
 
-- Dependencies
-Tested on Python 3.9.16 and MacOS Sonoma 14.4.
+After installing the packages, you can conduct the experiments by running:
+
+```
+python3 run.py
+```
+A folder will be created under the 'output_path' in `run.py`, containing all the experimental results.
+
+## Data
+
+he necessary data for executing the framework's scripts is readily accessible in the [Chest X-ray dataset repository](https://github.com/ieee8023/covid-chestxray-dataset). Clone this repository to your local machine and specify the path to the cloned dataset in `run.py`.
+
+## Contributing
+
+We welcome contributions to improve the framework and extend its functionalities. Please feel free to fork the repository, make your changes, and submit a pull request.
